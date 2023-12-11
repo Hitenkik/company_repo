@@ -1,3 +1,15 @@
+<?php
+include "config.php";
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $delete = mysqli_query($conn, "delete from newproject where id='$id'");
+    if ($delete) {
+        header("location:data-show.php");
+        die();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +89,7 @@
                             <td>" . $result['message'] . "</td>
                             <td>
                                 <a href='?id=" . $result['id'] . "' class='opt'>Delete</a>
-                                <a href='' class='opt'>Edit</a>
+                                <a href='create.php?id=" . $result['id'] . "' class='opt'>Edit</a>
                             </td>
                         </tr>
                     ";
